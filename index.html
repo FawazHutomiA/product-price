@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>Product-Price</title>
+</head>
+<body>
+    
+    <div id="app">
+        <table class="md:mx-auto mt-6 border-separate [border-spacing:3rem_1rem]">
+            <button class="border-none bg-slate-500 text-white rounded appearance-none leading-tight w-auto px-4 py-3 md:ml-[240px] mt-8" @click="addNewRow">New</button>
+                <tr v-for="(invoice_product, k) in invoice_products" :key="k">
+                    <td>
+                        <label for="nama" class="text-base font-bold block">Product name</label>
+                        <input class="h-8 shadow appearance-none border rounded w-40 focus:outline pl-2 mt-1" type="text" name="nama" v-model="invoice_product.name">
+                    </td>
+                    <td>
+                        <label for="price" class="text-base font-bold block">Product price</label>
+                        <input class="h-8 shadow appearance-none border rounded w-40 focus:outline pl-2 mt-1" type="number" name="price" min="0" v-model="invoice_product.price">
+                    </td>
+                    <td>
+                        <label for="qty" class="text-base font-bold block">Qty</label>
+                        <input class="h-8 shadow appearance-none border rounded w-40 focus:outline pl-2 mt-1" min="0" type="number" name="qty" v-model="invoice_product.qty">
+                    </td>
+                    <td>
+                        <label for="grandTotal" class="text-base font-bold block">Total</label>
+                        <input class="h-8 shadow appearance-none border rounded w-40 focus:outline disabled:bg-white pl-2 mt-1" disabled type="number" name="total" readonly v-model="subtotalRow[k]">
+                    </td>
+                    <td>
+                        <button class="border-none bg-red-600 text-white rounded appearance-none leading-tight w-auto px-4 py-2 mt-7 ml-[-24px]"  v-if="k>0" @click="deleteRow(k)">Delete</button>
+                    </td>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <label for="grandTotal" class="text-base font-bold block">Grand total</label>
+                            <input class="h-8 shadow appearance-none border rounded w-40 focus:outline disabled:bg-white pl-2 mt-1" disabled type="number" name="grandTotal" readonly v-model="total">
+                        </td>
+                    </tr>
+                </tr>
+        </table>
+        
+        
+    </div>
+
+
+    <script src="main.js"></script>
+    
+    <script>
+        const mountedApp = app.mount('#app')
+    </script>
+</body>
+</html>
